@@ -5,6 +5,7 @@ import {createBrowserRouter,RouterProvider,Route,createRoutesFromElements} from 
 import SignUp from './Pages/Signup'
 import SignIn from "./Pages/Signin"
 import Home from './Pages/Home'
+import DashBoard from './Pages/DashBoard'
 
 const router=createBrowserRouter(
   [ {
@@ -19,6 +20,10 @@ const router=createBrowserRouter(
     {
       path:"/fun2read/login",
       element:<SignIn/>
+    },
+    {
+      path:"/dashboard",
+      element:<DashBoard/>
     }
   ]
 )

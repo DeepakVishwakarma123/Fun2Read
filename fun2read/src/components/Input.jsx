@@ -1,3 +1,5 @@
+import CustomValidationMessage from "../Hooks/setCustomValiditymessage"
+
 function Input(
     {
         placholder,
@@ -8,7 +10,13 @@ function Input(
 )
 {
     return (
-        <input  onChange={(e) => {setValue(e.target.value)}} required  id={id} type={type} placeholder={placholder} className="bg-[#060E20] text-white w-full p-2.5 placeholder-[#5A6271]  rounded-sm outline-1 focus:outline-[#5A6261] outline-[#5A6261]"/> 
+        <input  onChange={(e) =>  
+            {   
+                console.log("onchange event occured")
+                CustomValidationMessage(e.target)
+                setValue(e.target.value) 
+            
+            }} required  id={id} type={type} placeholder={placholder} className="bg-[#060E20] text-white w-full p-2.5 placeholder-[#5A6271]  rounded-sm outline-1 focus:outline-[#5A6261] outline-[#5A6261]"/> 
      )
 }
 

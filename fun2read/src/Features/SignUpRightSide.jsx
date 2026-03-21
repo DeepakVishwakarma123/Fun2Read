@@ -5,14 +5,16 @@ import { use, useEffect, useState } from 'react'
 import FetchApiPost from '../Hooks/FetchApiPost'
 import Loader from '../components/Loader'
 import Error from '../components/Error'
+import {useNavigate} from "react-router-dom"
 
 function SignUpRightSide()
 {  
-    
+    const navigate=useNavigate()
     const [name,setName]=useState("")
     const [email,setEmail]=useState("")
     const [password,setPassword]=useState("")
     const [response,setResponse]=useState(" ")
+    const [loading,setLoading]=useState(null)
     const [error,setError]=useState()
 
 
@@ -24,7 +26,17 @@ function SignUpRightSide()
           let message=response["data"]["message"]
           setError(message)
         }
+        if(response["status"]===201)
+        {
+          navigate("/fun2read/login")
+        }
       },[response]
+    )
+
+    useEffect(
+      () => {
+        setError(null)
+      },[email,name,password]
     )
 
 
@@ -34,12 +46,12 @@ function SignUpRightSide()
           console.error("please fill all fields")
           return
         }
-        //setting state to null its mean that data is not available at 
-        // setResponse(null)
+        setLoading(true)
   FetchApiPost('http://localhost:4002/api/v1/register',{username:name,email:email,password:password}).then( 
   (data) => {
       console.log(data)
-      setResponse(data)         
+      setResponse(data)
+      setLoading(null)         
   }
   ).catch(
   (err) => console.log(err) 
@@ -49,7 +61,7 @@ function SignUpRightSide()
 
     return (
          <section className="col-span-6 bg-[#0F172A] grid items-center">
-        <form autoComplete='on' className="flex flex-col gap-5 p-5 md:p-20">
+        <form  className="flex flex-col gap-5 p-5 md:p-20">
           <div className="flex flex-col gap-3.5">
           <Label LabelText={"Full name"} inputId={"name"}/>
           <Input id={"name"}  setValue={setName} type={"text"} placholder={"Deepak Vishwakarma"}/>
@@ -65,7 +77,8 @@ function SignUpRightSide()
           <Input id={"password"} setValue={setPassword} placholder={"deepak@123#"} type={"password"}/>
           </div>
           {
-            response?<Button handler={Register} type={"button"} buttonText={"Create Account"}/>:<Button handler={Register} type={"button"} buttonText={<Loader/>}/>
+            loading?<Button handler={Register} type={"button"} buttonText={<Loader/>}/>:
+            <Button handler={Register} type={"submit"} buttonText={"Create Account"}/>
           }
           {
             error && <Error errorText={error}/>
