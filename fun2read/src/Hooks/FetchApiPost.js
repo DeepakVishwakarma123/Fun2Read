@@ -7,7 +7,8 @@ async function FetchApiPost(url,bodyObject)
         headers:{
             'Content-Type':"application/json"
         },
-        body:JSON.stringify(bodyObject)
+        body:JSON.stringify(bodyObject),
+        credentials:"include"
     })
     let data=await response.json()
     let finalDataObject={
