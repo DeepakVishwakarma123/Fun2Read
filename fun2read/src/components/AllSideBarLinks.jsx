@@ -4,7 +4,7 @@ import BottomLinkSideBar from "./BottomLinkSideBar"
 function AllSideBarLinks()
 {
 return (
-    <div className="flex flex-col justify-between  bg-pink-800 h-full">
+    <div className="flex flex-col justify-between bg-purple-950 h-full">
         <LinksSectionSideBar/>
         <BottomLinkSideBar/>
     </div>

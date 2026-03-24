@@ -11,6 +11,8 @@ import {redirect } from 'react-router-dom'
 import SectionPage from './Pages/Section'
 import Copyright from './components/Copyright'
 import TagLine from './components/TagLine'
+import FinalDashBoard from './Pages/FinalDashBoard'
+import MyLibrary from './Pages/MyLibrary'
 
 
 
@@ -49,11 +51,11 @@ const router=createBrowserRouter(
       children:[
         {
           path:"/section/d",
-          element:<Copyright/>
+          element:<FinalDashBoard/>
         },
         {
           path:"/section/b",
-          element:<TagLine/>
+          element:<MyLibrary/>
         }
       ]
     }

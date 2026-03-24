@@ -6,7 +6,7 @@ function SectionLayout()
  return (
     <>
     <FinalSectionSideBarLeftSide/>
-    <div>
+    <div className="col-span-10">
         <Outlet/>
     </div>
     </>
