@@ -8,6 +8,9 @@ import Home from './Pages/Home'
 import DashBoard from './Pages/DashBoard'
 import FetchApiGet from './Hooks/FetchApiGet'
 import {redirect } from 'react-router-dom'
+import SectionPage from './Pages/Section'
+import Copyright from './components/Copyright'
+import TagLine from './components/TagLine'
 
 
 
@@ -39,6 +42,20 @@ const router=createBrowserRouter(
         }
       },
       element:<DashBoard/>
+    },
+    {
+      path:"/section",
+      element:<SectionPage/>,
+      children:[
+        {
+          path:"/section/d",
+          element:<Copyright/>
+        },
+        {
+          path:"/section/b",
+          element:<TagLine/>
+        }
+      ]
     }
   ]
 )
