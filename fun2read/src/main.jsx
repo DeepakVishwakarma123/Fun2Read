@@ -13,6 +13,12 @@ import Copyright from './components/Copyright'
 import TagLine from './components/TagLine'
 import FinalDashBoard from './Pages/FinalDashBoard'
 import MyLibrary from './Pages/MyLibrary'
+import ReadingSession from './Pages/ReadingSession'
+import { pdfjs } from 'react-pdf';
+import QuizPage from './Pages/QuizPage'
+
+// This points to a CDN version of the worker so it matches your library version
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 
 
@@ -56,6 +62,14 @@ const router=createBrowserRouter(
         {
           path:"/section/b",
           element:<MyLibrary/>
+        },
+        {
+          path:"/section/c",
+          element:<ReadingSession/>
+        },
+        {
+          path:"/section/quiz",
+          element:<QuizPage/>
         }
       ]
     }

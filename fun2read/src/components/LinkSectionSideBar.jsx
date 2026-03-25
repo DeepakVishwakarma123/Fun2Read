@@ -11,10 +11,10 @@ return (
            <RefLink linkTitle={"library"} refereUrl={"/section/b"}>
            <Icon Iconsrc={"/public/Icon/open-book.png"}/> 
         </RefLink>
-         <RefLink linkTitle={"Session"} refereUrl={"/register"}>
+         <RefLink linkTitle={"Session"} refereUrl={"/section/c"}>
            <Icon Iconsrc={"/public/Icon/read.png"}/> 
         </RefLink>
-         <RefLink linkTitle={"Quiz History"} refereUrl={"/"}>
+         <RefLink linkTitle={"Quiz History"} refereUrl={"/section/quiz"}>
            <Icon Iconsrc={"/public/Icon/ideas.png"}/> 
         </RefLink>
          <RefLink linkTitle={"Settings"} refereUrl={"/dashboard"}>
