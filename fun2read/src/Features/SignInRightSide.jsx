@@ -28,7 +28,7 @@ function SignInRightSide()
         }
         if(response["status"]===201)
         {
-          navigate("/dashboard")
+          navigate("/section/d")
         }
       },[response]
     )

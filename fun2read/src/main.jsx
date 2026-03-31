@@ -16,15 +16,20 @@ import MyLibrary from './Pages/MyLibrary'
 import ReadingSession from './Pages/ReadingSession'
 import { pdfjs } from 'react-pdf';
 import QuizPage from './Pages/QuizPage'
+import ErrorPage from './components/Errorpage'
+import { QueryClient,QueryClientProvider } from '@tanstack/react-query'
 
 // This points to a CDN version of the worker so it matches your library version
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 
+const queryclient=new QueryClient()
+
 
 const router=createBrowserRouter(
   [ {
     path:"/",
+    errorElement:<ErrorPage/>,
     element:<Home/>
   }
     ,
@@ -38,6 +43,7 @@ const router=createBrowserRouter(
     },
     {
       path:"/dashboard",
+      errorElement:<ErrorPage/>,
       loader:async function () {
         let responseJsonData=await FetchApiGet(`http://localhost:4002/api/v1/dashboard/me`)
         if(responseJsonData["response"]["status"]>=400)
@@ -53,6 +59,18 @@ const router=createBrowserRouter(
     },
     {
       path:"/section",
+      errorElement:<ErrorPage/>,
+      loader:async function () {
+        let responseJsonData=await FetchApiGet(`http://localhost:4002/api/v1/dashboard/me`)
+        if(responseJsonData["response"]["status"]>=400)
+        {
+          return redirect("/fun2read/login")
+        }
+        if(responseJsonData["response"]["status"]===201)
+        {
+          return responseJsonData
+        }
+      },
       element:<SectionPage/>,
       children:[
         {
@@ -78,6 +96,8 @@ const router=createBrowserRouter(
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <QueryClientProvider client={queryclient}>
    <RouterProvider router={router}/>
+    </QueryClientProvider>
   </StrictMode>,
 )

@@ -1,6 +1,6 @@
 function PageTarget(
     {
-        startPage=42,
+        startPage,
         endPage=50
     }
 )

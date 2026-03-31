@@ -1,15 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 
 // CSS Imports (Zaroori hain!)
 import 'react-pdf/dist/Page/TextLayer.css';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
+import { bookpathContext } from '../context/context.js';
+import { currentbookpathcontext } from '../context/context.js';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 function MyPDFViewer() {
+  const {renderpdfurl,seturl} =useContext(currentbookpathcontext)
   const [numPages, setNumPages] = useState(null);
-
+  const {bookpath,setpath}=useContext(bookpathContext)
+  let fullurl="http://localhost:4002/"+bookpath
+  console.log(fullurl)
+  seturl(bookpath)
+  console.log("bookpath now",bookpath)
   return (
     <div className='overflow-y-hidden' style={{
       width: '100%',
@@ -23,7 +30,7 @@ function MyPDFViewer() {
     }}>
       
       <Document
-        file="/Icon/demo.pdf"
+        file={fullurl}
         onLoadSuccess={({ numPages }) => setNumPages(numPages)}
       >
         {Array.from(new Array(numPages), (el, index) => (

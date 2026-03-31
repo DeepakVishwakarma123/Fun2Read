@@ -1,23 +1,116 @@
+import { useEffect, useState } from "react"
+import { useRef } from "react";
+
+
+
 function Timer()
-{
-    return (
+{      
+    
+     const [selectTime,setCustomTime]=useState(5)
+     const [seconds,setseconds]=useState("00")
+     const [timerun,settimerun]=useState(false)
+
+     useEffect(
+        () => {
+           let id;
+           if(timerun)
+           {
+           let intervalid=setInterval(() => {
+           if(selectTime===1)
+           {
+            setCustomTime(0)
+            setseconds(59)
+           }
+           if(selectTime===10)
+           {
+            setCustomTime(9)
+           }
+           if(seconds===1 && selectTime===0)
+           {
+            console.log("stop it now")
+            clearInterval(intervalid)
+            settimerun((prev) => !prev)
+           }
+           if(typeof(seconds)!="string")
+            {
+                
+                setseconds((prev) => prev-1)
+           }
+           if(seconds===1 && selectTime>1)
+           {
+            setseconds(59)
+            setCustomTime((prev) => prev-1)
+           }
+           if(selectTime===5)
+           {
+            setCustomTime(4)
+            setseconds(59)
+           }
+        }, 1000);
+        id=intervalid
+    }
+
+        return () => {
+            clearInterval(id)
+        }
+
+        },[timerun,seconds,selectTime]
+     )
+     return (
         <div className="bg-amber-800 flex gap-8">
             <p className="uppercase text-orange-500 font-semibold tracking-wide flex justify-center items-center">
             Timer:
             </p>
             {/* time optins to be choosed */}
             <div className="bg-orange-400 flex">
-                <button className="p-4 bg-gray-500 font-semibold text-teal-300 flex justify-center items-center">15m</button>
-                <button className="p-4 bg-gray-500 font-semibold text-teal-400 flex justify-center items-center">30m</button>
-                <button className="p-4 bg-gray-500 font-semibold text-teal-300 flex justify-center items-center">45m</button>
-                <button className="p-4 bg-gray-500 font-semibold text-teal-300 flex justify-center items-center">60m</button>
+                <button
+                onClick={() => {
+                    setCustomTime(1)
+                }} 
+                className="p-4 bg-gray-500 font-semibold text-teal-300 flex justify-center items-center">
+                1m</button>
+             <button
+                onClick={() => {
+                    setCustomTime(5)
+                }} 
+                className="p-4 bg-gray-500 font-semibold text-teal-300 flex justify-center items-center">
+                5m</button>
+                 <button
+                onClick={() => {
+                    setCustomTime(10)
+                }} 
+                className="p-4 bg-gray-500 font-semibold text-teal-300 flex justify-center items-center">
+                10m</button>
             </div>
             {/* time which moves */}
-            <div className="text-red-700 bg-purple-800 flex justify-center items-center">
-                45:00
+            <div  className="text-black text-2xl font-semibold bg-purple-800 flex justify-center items-center">
+                {
+                    selectTime
+                }
+                :
+                {
+                    seconds
+                }
             </div>
-            <button className="bg-blue-700 text-white font-semibold">
+            <button onClick={() =>   
+                {  
+                    console.log("clicked button");
+                    
+                    settimerun(true)
+
+                }
+                } className="bg-blue-700 text-white font-semibold">
                 Start Session
+            </button>
+             <button onClick={() =>   
+                {  
+                    console.log("clicked button");
+                    
+                    settimerun(false)
+
+                }
+                } className="bg-blue-700 text-white font-semibold">
+                Pause Session
             </button>
         </div>
     )
