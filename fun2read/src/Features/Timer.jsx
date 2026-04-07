@@ -57,8 +57,8 @@ function Timer()
         },[timerun,seconds,selectTime]
      )
      return (
-        <div className="bg-amber-800 flex gap-8">
-            <p className="uppercase text-orange-500 font-semibold tracking-wide flex justify-center items-center">
+        <div className="bg-[#373c53] flex gap-8 p-2">
+            <p className="bg-[#131B2E] uppercase text-white font-semibold tracking-wide flex justify-center items-center">
             Timer:
             </p>
             {/* time optins to be choosed */}
@@ -83,7 +83,7 @@ function Timer()
                 10m</button>
             </div>
             {/* time which moves */}
-            <div  className="text-black text-2xl font-semibold bg-purple-800 flex justify-center items-center">
+            <div  className="text-white text-2xl font-semibold bg-[#21293b] flex justify-center items-center">
                 {
                     selectTime
                 }

@@ -22,7 +22,7 @@ function MyPDFViewer() {
       width: '100%',
       height: '85vh',      // Viewer ki total height
       overflowY: 'auto',   // Scrollbar enable karne ke liye
-      backgroundColor: '#525659', // Professional dark gray background
+      backgroundColor: '#20242b ', // Professional dark gray background
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',

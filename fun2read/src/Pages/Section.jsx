@@ -5,6 +5,7 @@ import PageRangeProvider from "../context/PageRangeProvider"
 import CurrerntRenderedBookurl from "../context/Currentrenderedbookpath"
 import QuesionanswerProvider from "../context/QuestionanswerProvider"
 import UserAnswerProvider from "../context/UserAnswerProvider"
+import ArrayHolderProvider from "../context/ArrayHolder"
 
 function SectionPage()
 {
@@ -16,7 +17,10 @@ return (
                 <CurrerntRenderedBookurl>
                     <QuesionanswerProvider>
                         <UserAnswerProvider>
+                            <ArrayHolderProvider>
+
         <SectionLayout/>
+                            </ArrayHolderProvider>
                         </UserAnswerProvider>
                     </QuesionanswerProvider>
                 </CurrerntRenderedBookurl>

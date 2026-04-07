@@ -17,7 +17,9 @@ import ReadingSession from './Pages/ReadingSession'
 import { pdfjs } from 'react-pdf';
 import QuizPage from './Pages/QuizPage'
 import ErrorPage from './components/Errorpage'
+import HistoryPage from './Pages/HistoryPage'
 import { QueryClient,QueryClientProvider } from '@tanstack/react-query'
+import Logout from './Pages/Logout'
 
 // This points to a CDN version of the worker so it matches your library version
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
@@ -73,10 +75,10 @@ const router=createBrowserRouter(
       },
       element:<SectionPage/>,
       children:[
-        {
-          path:"/section/d",
-          element:<FinalDashBoard/>
-        },
+        // {
+        //   path:"/section/d",
+        //   element:<FinalDashBoard/>
+        // },
         {
           path:"/section/b",
           element:<MyLibrary/>
@@ -88,6 +90,14 @@ const router=createBrowserRouter(
         {
           path:"/section/quiz",
           element:<QuizPage/>
+        },
+        {
+          path:"/section/history",
+          element:<HistoryPage/>
+        },
+        {
+          path:"/section/settings",
+          element:<Logout/>
         }
       ]
     }

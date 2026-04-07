@@ -10,7 +10,7 @@ function TopRowReadinSession()
  let {pagerange,setrange}=useContext(pagenumbercontext)
  console.log(pagerange)
     return (
-       <div className="flex bg-fuchsia-950 justify-between p-2">
+       <div className="flex bg-[#0B1326] justify-between p-2">
         <BookCurrent/>
         <Timer/>
         <PageTarget startPage={pagerange[0]} endPage={pagerange[1]}/>

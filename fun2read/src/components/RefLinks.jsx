@@ -9,7 +9,12 @@ function RefLink(
 )
 {
 return <div>
-       <NavLink to={refereUrl} className="flex">
+       <NavLink to={refereUrl} className={
+        ({
+            isActive
+        }) => { return   isActive?"flex gap-2 p-2 font-semibold text-blue-400":"flex gap-2 p-2 font-semibold"
+        }
+        }>
         {children}
         {linkTitle}
        </NavLink>

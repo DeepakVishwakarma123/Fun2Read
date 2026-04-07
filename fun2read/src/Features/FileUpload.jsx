@@ -3,6 +3,9 @@ import FetchApiPost from "../Hooks/FetchApiPost";
 import React, { useState } from "react";
 import FetchApiForm from "../Hooks/FormPost";
 import Error from "../components/Error";
+import { useQueryClient } from "@tanstack/react-query";
+
+
 
 "use strict"
 
@@ -13,6 +16,8 @@ export function FileUploadDemo() {
   const [userBooks,setUserBooks]=useState("Test")
   const [fileError,setError]=useState(null)
   const [filestatus,setfilestatus]=useState(null)
+const queryClient = useQueryClient();
+
   console.log(userBooks)
 
    async function submitfile(e) {
@@ -35,6 +40,8 @@ console.log(fileInput.files);
       if(res["status"]==200 || res["status"]==201)
       {
         setfilestatus(res["data"]["message"])
+
+         queryClient.invalidateQueries(['book'])
       }
     }
   ).catch(
@@ -49,16 +56,16 @@ console.log(fileInput.files);
   return (
     <>  
            {/*here i used  fixed height in file upload contne   */}
-        <div className="bg-teal-800 flex justify-center border border-lime-950 items-center w-[50%] h-40">
+        <div className="bg-[#0F172A] flex justify-center border  border-transparent items-center w-[50%] h-40">
           <form onSubmit={submitfile}  encType="multipart/form-data">
         <label htmlFor="file">
         <div className="flex justify-center items-center flex-col gap-2">
-            <img src="/Icon/cloud-computing.png" width={"50px"} alt="" />
-            <p className="text-lime-400 font-semibold">Upload a file</p>
+            <img src="/Icon/backup-file.png" width={"50px"} alt="" />
+            <p className="text-white  font-semibold">Upload a file</p>
         </div>
         </label>
         <input type="file" className="hidden" id="file" name="bookpdf"/>
-        <input className="bg-amber-300 p-2 w-[80%] rounded-2xl"  type="submit" value={"submit"} />
+        <input className="bg-[#131C2F] p-2 w-[80%] text-white border border-gray-400 rounded-2xl"  type="submit" value={"submit"} />
           </form>
        </div>
           {

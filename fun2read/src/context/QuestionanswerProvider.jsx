@@ -6,7 +6,7 @@ let QuesionanswerProvider=(
         children
     }
 ) => {
-    const [qna,setqna]=useState("")
+    const [qna,setqna]=useState(null)
     return<questioinanswercontext.Provider value={{qna,setqna}}>
 {children}
     </questioinanswercontext.Provider>

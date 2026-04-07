@@ -5,9 +5,18 @@ import { useNavigate } from "react-router-dom"
 
 
 const colors = [
-  "bg-indigo-600", "bg-teal-600", "bg-rose-600", 
-  "bg-amber-600", "bg-purple-600", "bg-emerald-600"
+  "bg-[#1E293B]",  // clearer slate contrast
+  "bg-[#1F2A44]",  // bluish lift
+  "bg-[#232946]",  // deep indigo (stands out nicely)
+  "bg-[#2A2F4F]",  // subtle purple tone
+  "bg-[#2C365E]",  // richer blue contrast
+  "bg-[#1B3A4B]",  // teal-dark (good separation)
+  "bg-[#2D3748]",  // gray-blue contrast
+  "bg-[#2A2A40]",  // neutral dark but visible
+  "bg-[#243447]",  // strong UI card color
+  "bg-[#1C2B3A]"   // slightly brighter than base
 ]
+
 
 
 
@@ -33,8 +42,7 @@ function DashBoardBookCover({
                     bookname[0].toUpperCase()
                 }
             </span>
-            <button onClick={renderCurrentPdf}>Read now
-            </button>
+            <button className="bg-[#6366F1] hover:bg-[#4f46e5] text-white px-4 cursor-pointer  rounded-lg"  onClick={renderCurrentPdf}>Read now </button>
         </div>
     )
 }
